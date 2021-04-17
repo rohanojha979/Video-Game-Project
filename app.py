@@ -1,13 +1,51 @@
 import streamlit as st
+
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 import pandas as pd
+from database import Report
+from vizualization import plot
 
-df = pd.read_csv("vgsales.csv")
+engine = create_engine('sqlite:///db.sqlite3')
+Session = sessionmaker(bind=engine)
+sess = Session()
 
-st.title("Video Game Sales Analysis")
-st.markdown("![alt text] (https://img.etimg.com/thumb/msid-79058608,width-640,resizemode-4,imgsize-107012/the-journey-of-video-games.jpg)")
-
-st.dataframe(df)
-
+st.title('Video Game Sales Analysis')
 sidebar = st.sidebar
 
-sidebar.header("choose your action")
+def viewForm():
+    st.plotly_chart(plot())
+
+    title = st.text_input("Report Title")
+    desc = st.text_area('Report Description')
+    btn = st.button("Submit")
+
+    if btn:
+        report1 = Report(title = title, desc = desc, data = "")
+        sess.add(report1)
+        sess.commit()
+        st.success('Report Saved')
+
+def viewReport():
+    reports = sess.query(Report).all()
+    titlesList = [ report.title for report in reports ]
+    selReport = st.selectbox(options = titlesList, label="Select Report")
+    
+    reportToView = sess.query(Report).filter_by(title = selReport).first()
+
+    markdown = f"""
+        ## {reportToView.title}
+        ### {reportToView.desc}
+        
+    """
+
+    st.markdown(markdown)
+
+sidebar.header('Choose Your Option')
+options = [ 'View Database', 'Analyse', 'View Report' ]
+choice = sidebar.selectbox( options = options, label="Choose Action" )
+
+if choice == options[1]:
+    viewForm()
+elif choice == options[2]:
+    viewReport()

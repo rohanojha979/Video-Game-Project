@@ -1,0 +1,5 @@
+top 50 game in bar chart
+by paltform in bar chart
+by region in bar chart
+by genre in pie / bar chart
+comparison of sales continent wise in bar graph
