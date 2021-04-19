@@ -4,16 +4,20 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 import pandas as pd
 from database import Report
-from vizualization import plot
+from visualization import plot, plotBar
+from AnalyseData import Analyse
 
 engine = create_engine('sqlite:///db.sqlite3')
 Session = sessionmaker(bind=engine)
 sess = Session()
 
-st.title('Video Game Sales Analysis')
+analysis = Analyse()
+
+st.title('Video Games Sales Analysis')
 sidebar = st.sidebar
 
 def viewForm():
+
     st.plotly_chart(plot())
 
     title = st.text_input("Report Title")
@@ -25,6 +29,10 @@ def viewForm():
         sess.add(report1)
         sess.commit()
         st.success('Report Saved')
+
+def analyse():
+    data = analysis.getCategories()
+    st.plotly_chart(plotBar(data.index, data.values))
 
 def viewReport():
     reports = sess.query(Report).all()
@@ -48,4 +56,4 @@ choice = sidebar.selectbox( options = options, label="Choose Action" )
 if choice == options[1]:
     viewForm()
 elif choice == options[2]:
-    viewReport()
+    analyse()
