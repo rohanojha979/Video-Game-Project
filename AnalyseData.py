@@ -7,13 +7,8 @@ class Analyse:
         self.cleanData()
 
     def cleanData(self):
-        self.df = df.drop(columns=['Rank'])
+        
         self.df.rename(columns={ 'NA_Sales': 'America', 'EU_Sales': 'Europe', 'JP_Sales': 'Japan', 'Other_Sales' : 'Other', 'Global_Sales' : 'Global' }, inplace = True)
 
-        self.df['Year'].fillna(0, inplace=True)
-        self.df['Year'] = df['Year'].astype('int')
-
-        self.df.set_index('Name', inplace=True)
-
-    def getCategories(self):
-        return self.df.groupby('Platform').count().sort_values('Global_Sales')['Global_Sales'][::-1]
+    def getpublisher(self):
+        return self.df.groupby('Publisher').count().sort_values('Genre')['Genre'][::-1].head(50).plot(kind='bar', figsize = (20, 7))

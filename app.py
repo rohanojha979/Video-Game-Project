@@ -31,7 +31,7 @@ def viewForm():
         st.success('Report Saved')
 
 def analyse():
-    data = analysis.getCategories()
+    data = analysis.getpublisher()
     st.plotly_chart(plotBar(data.index, data.values))
 
 def viewReport():
