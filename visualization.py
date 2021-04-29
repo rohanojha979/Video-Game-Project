@@ -7,9 +7,22 @@ def plot():
 
     return fig
 
-def plotBar(x, y):
+def plotBar(datapoint , title , xlabel , ylabel):
     fig = go.Figure()
 
-    fig.add_trace( go.Bar( x = x , y = y ) )
+    layout = go.Layout(title = title,
+                        xaxis = dict(title = xlabel),
+                        yaxis = dict(title = ylabel))
+
+    fig = go.Figure(layout = layout)
+
+    fig.add_trace( go.Bar( x = datapoint.index , y = datapoint.values ) )
+
+    return fig
+
+def PlotLine(x,y):
+    fig = go.Figure()
+
+    fig.add_trace(go.Line( x = x, y = y))
 
     return fig

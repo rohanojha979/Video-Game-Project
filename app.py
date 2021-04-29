@@ -11,7 +11,7 @@ engine = create_engine('sqlite:///db.sqlite3')
 Session = sessionmaker(bind=engine)
 sess = Session()
 
-analysis = Analyse()
+analysis = Analyse("datasets/vgsales.csv")
 
 st.title('Video Games Sales Analysis')
 sidebar = st.sidebar
