@@ -11,7 +11,7 @@ engine = create_engine('sqlite:///db.sqlite3')
 Session = sessionmaker(bind=engine)
 sess = Session()
 
-analysis = Analyse()
+analysis = Analyse("datasets/vgsales.csv")
 
 st.title('Video Games Sales Analysis')
 sidebar = st.sidebar
@@ -31,7 +31,7 @@ def viewForm():
         st.success('Report Saved')
 
 def analyse():
-    data = analysis.getCategories()
+    data = analysis.getpublisher()
     st.plotly_chart(plotBar(data.index, data.values))
 
 def analysePlatform():
