@@ -13,6 +13,7 @@ sess = Session()
 
 analysis = Analyse("datasets/vgsales.csv")
 
+
 st.title('Video Games Sales Analysis')
 sidebar = st.sidebar
 
@@ -36,44 +37,45 @@ def analyse():
 
 def analysePlatform():
     data = analysis.getPlatform()
-    st.plotly_chart(plotBar(analysis.getPlatform(), 'title', 'xlabel', 'ylabel'))
+    st.plotly_chart(plotBar(analysis.getPlatform(), 'VG Sales Platform Data', 'Name of Platform', 'Number Of Sales'))
 
 def analysePublisher():
 
     num = st.select_slider(options=[5, 10, 15, 20, 25, 30], label="Select the number of Publishers to show")
     st.header('Top Publishers By Release Count')
-    st.plotly_chart(plotBar(analysis.getTopPublishersByCount(num), 'title', 'xlabel', 'ylabel'))
+    st.plotly_chart(plotBar(analysis.getTopPublishersByCount(num), 'VG Sales Publisher Data', 'Name Of Publisher', 'Number Of Sales'))
 
     st.header('Top Publishers By Total Sales')
-    st.plotly_chart(plotBar(analysis.getTopPublishersBySum(num), 'title', 'xlabel', 'ylabel'))
+    st.plotly_chart(plotBar(analysis.getTopPublishersBySum(num), 'Total Sales of Pubisher Data', 'Name Of Publisher', 'Number Of Sales'))
 
     st.header('Top Publishers By Total Sales in Region')
     for region, name in analysis.getRegion():
-        st.plotly_chart(plotBar(analysis.getTopPublishersBySumInRegion(num, region), 'Total Sales in '+name, 'xlabel', 'ylabel'))
+        st.plotly_chart(plotBar(analysis.getTopPublishersBySumInRegion(num, region), 'Total Sales in '+name, 'Top Publisher', 'Number Of Sales'))
 
 def analyseGenre():
 
     st.header('Top Genres By Release Count')
-    st.plotly_chart(plotBar(analysis.getTopGenresByCount(), 'title', 'xlabel', 'ylabel'))
+    st.plotly_chart(plotBar(analysis.getTopGenresByCount(), 'Top Genre', 'Name Of Genre', 'Number Of Sales'))
 
     st.header('Top Genres By Total Sales')
-    st.plotly_chart(plotBar(analysis.getTopGenresBySum(), 'title', 'xlabel', 'ylabel'))
+    st.plotly_chart(plotBar(analysis.getTopGenresBySum(), ' Total Sales of Top Genre', 'Name Of Genre', 'Number Of Sales'))
 
     st.header('Top Genres By Total Sales in Region')
     for region, name in analysis.getRegion():
-        st.plotly_chart(plotBar(analysis.getTopGenresBySumInRegion(region), 'Total Sales in '+name, 'xlabel', 'ylabel'))
+        st.plotly_chart(plotBar(analysis.getTopGenresBySumInRegion(region), 'Total Sales By Region of Top Genre '+name, 'Name Of Genre', 'Number Of Sales'))
 
     st.header('Top Genres By Total Sales in Region')
     for region, name in analysis.getRegion():
-        st.plotly_chart(plotBar(analysis.getTopGenresByCountInRegion(region), 'Total Release Count in '+name, 'xlabel', 'ylabel'))
+        st.plotly_chart(plotBar(analysis.getTopGenresByCountInRegion(region), 'Total Release Count in '+name, 'Name Of Genre', 'Number Of Sales'))
 
 def viewDataset():
     st.header('Dataset Used for Video Game Sales Analysis')
     st.dataframe(analysis.getDataframe())
+   
 
 def analyseGameRelease():
     st.header("Year wise release")
-    st.plotly_chart(plotLine(analysis.getYearWiseRelease(), 'title', 'xlabel', 'ylabel'))
+    st.plotly_chart(plotLine(analysis.getYearWiseRelease(), 'Game Growth By Year', 'Year', 'Number Of Sales'))
 
 # def 
 
