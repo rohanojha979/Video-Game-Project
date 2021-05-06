@@ -31,6 +31,14 @@ def viewForm():
         sess.commit()
         st.success('Report Saved')
 
+def viewDataset():
+    st.header('Dataset Used for Video Game Sales Analysis')
+    st.dataframe(analysis.getDataframe())
+
+    st.header("Dataset Used For Platform")
+    st.dataframe(analysis.getPlatform())
+
+
 def analyse():
     data = analysis.getpublisher()
     st.plotly_chart(plotBar(data.index, data.values))
@@ -67,10 +75,6 @@ def analyseGenre():
     st.header('Top Genres By Total Sales in Region')
     for region, name in analysis.getRegion():
         st.plotly_chart(plotBar(analysis.getTopGenresByCountInRegion(region), 'Total Release Count in '+name, 'Name Of Genre', 'Number Of Sales'))
-
-def viewDataset():
-    st.header('Dataset Used for Video Game Sales Analysis')
-    st.dataframe(analysis.getDataframe())
    
 
 def analyseGameRelease():
