@@ -15,6 +15,15 @@ analysis = Analyse("datasets/vgsales.csv")
 
 
 st.title('Video Games Sales Analysis')
+st.image("https://blog.vinfotech.com/sites/default/files/styles/blog-list-img-new/public/how-to-build-a-successful-real-money-gaming-website-banner.png?itok=MJI4LKyG")
+st.header("In my project, analysis the sales of games according to ranking wise, revenue wise, growth wise and my project also analyze the pupolarity of games according to genre, platform, publisher")
+
+st.markdown("    ")
+st.markdown("    ")
+st.markdown("    ")
+st.markdown("----")
+
+
 sidebar = st.sidebar
 
 def viewForm():
@@ -32,11 +41,36 @@ def viewForm():
         st.success('Report Saved')
 
 def viewDataset():
-    st.header('Dataset Used for Video Game Sales Analysis')
-    st.dataframe(analysis.getDataframe())
+    st.header("Dataset Used for Video Game Sales Analysis")
+    dataframe = analysis.getDataframe()
 
-    st.header("Dataset Used For Platform")
-    st.dataframe(analysis.getPlatform())
+    with st.spinner("Loading Data..."):
+        st.dataframe(dataframe)
+
+        st.markdown('---')
+        cols = st.beta_columns(4)
+        cols[0].markdown("### No. of Rows :")
+        cols[1].markdown(f"# {dataframe.shape[0]}")
+        cols[2].markdown("### No. of Columns :")
+        cols[3].markdown(f"# {dataframe.shape[1]}")
+        st.markdown('---')
+
+        st.header('Summary')
+        st.dataframe(dataframe.describe())
+        st.markdown('---')
+
+        types = {'object' : 'Categorical', 'int64': 'Numerical', 'float64': 'Numerical'}
+        types = list(map(lambda t: types[str(t)], dataframe.dtypes))
+        st.header('Dataset Columns')
+        for col, t in zip(dataframe.columns, types):
+            st.markdown(f"### {col}")
+            cols = st.beta_columns(4)
+            cols[0].markdown('#### Unique Values :')
+            cols[1].markdown(f"# {dataframe[col].unique().size}")
+            cols[2].markdown('#### Type :')
+            cols[3].markdown(f"## {t}")
+
+  
 
 
 def analyse():
