@@ -5,7 +5,6 @@ class Analyse:
 
     def __init__(self, path='datasets/vgsales.csv'):
         self.df = pd.read_csv(path)
-        self.df = self.df[:1000]
         self.cleanData()
         self.df_upd = self.df[self.df['year'] != 0]
 

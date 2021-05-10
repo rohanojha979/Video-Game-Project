@@ -7,7 +7,7 @@ from database import Report
 from visualization import *
 from AnalyseData import Analyse
 
-engine = create_engine('sqlite:///db.sqlite3')
+engine = create_engine('sqlite:///db.sqlite3') 
 Session = sessionmaker(bind=engine)
 sess = Session()
 
@@ -64,7 +64,7 @@ def viewDataset():
 def analysePlatform():
     data = analysis.getPlatform()
     st.plotly_chart(plotBar(analysis.getPlatform(
-    ), 'VG Sales Platform Data', 'Name of Platform', 'Global sales in millions'))
+    ), 'Video Games Sales Platform Data', 'Name of Platform', 'Global sales in millions'))
     st.markdown("""
     ### In this graph, it shows that the global sales in million dollars platform wise which the top platform is PS2 and revenue is about 1200 millions dollars and after that X360 and this platform revenue is about 980 million dollars , the PS2 platform is highly demanded which gamers like to play most game and this platform PCFX is not popular and revenue is about 0.03 million dollars """)
 
@@ -75,7 +75,7 @@ def analysePublisher():
         options=[5, 10, 15, 20, 25, 30], label="Select the number of Publishers to show")
     st.header('Top Publishers By Release Count')
     st.plotly_chart(plotBar(analysis.getTopPublishersByCount(
-        num), 'VG Sales Publisher Data', 'Name Of Publisher', 'Global sales in millions'))
+        num), 'Video Games Sales Publisher Data', 'Name Of Publisher', 'Total sales in millions'))
     st.markdown("""
     ### In this graph, it shows the top publishers which are the highest in global sales and the top publisher is electronics arts which total sales is about 1350 million dollars and Electronic Arts is a leading publisher of games on Console, PC and Mobile. We exist to inspire the world through Play. Electronic Arts is a leading publisher of games on Console, PC and Mobile. EA Play FIFA 21 Madden NFL 21 Apex Legends Star Wars.
     # """)
@@ -101,10 +101,18 @@ def analysePublisher():
     st.plotly_chart(plotBar(analysis.getTopPublishersBySum(
         num), 'Total Sales of Publisher Data', 'Name Of Publisher', 'Global sales in millions'))
 
+    st.markdown(""" In this graph, it shows the top publishers which are the highest in total sales and the top publisher is Nintendo which total sales is about 1700 million dollars and 
+Nintendo Co., Ltd. is a Japanese multinational consumer electronics and video game company headquartered in Kyoto. The company was founded in 1889 as Nintendo Karuta by craftsman Fusajiro Yamauchi and originally produced handmade hanafuda playing cards. After venturing into various lines of business during the 1960s and acquiring a legal status as a public company under the current company name, Nintendo distributed its first video game console, the Color TV-Game, in 1977. It gained international recognition with the release of the Nintendo Entertainment System in 1985.
+
+The second top publishers is Electronics Arts and total sales is about 1100 million dollars and Electronic Arts is a leading publisher of games on Console, PC and Mobile.
+
+    """)
+
     st.header('Top Publishers By Total Sales in Region')
     for region, name in analysis.getRegion():
         st.plotly_chart(plotBar(analysis.getTopPublishersBySumInRegion(
             num, region), 'Total Sales in '+name, 'Top Publisher', 'Global sales in millions'))
+            
 
 
 def analyseGenre():
@@ -112,20 +120,20 @@ def analyseGenre():
     st.header('Top Genres By Release Count')
     st.plotly_chart(plotBar(analysis.getTopGenresByCount(),
                             'Top Genre', 'Name Of Genre', 'Global sales in millions'))
+    st.markdown(""" In this graph we can see that the top genres and its release count and the top genre is Action and its release count is about 3100 million dollars and the next top genre is sports and its release count is about 2300 million dollars and after Misc is about 1700 million dollars release count.
+    """)
 
     st.header('Top Genres By Total Sales')
     st.plotly_chart(plotBar(analysis.getTopGenresBySum(
     ), ' Total Sales of Top Genre', 'Name Of Genre', 'Global sales in millions'))
-
+    st.markdown(""" In this graph we can see that the top genres and its total sales and the top genre is Action and its total sales is about 1700 million dollars and the next top genre is sports and its total sales is about 1300 million dollars and after shooter is about 1000 million dollars total sales.
+    """)
+    
     st.header('Top Genres By Total Sales in Region')
     for region, name in analysis.getRegion():
         st.plotly_chart(plotBar(analysis.getTopGenresBySumInRegion(
             region), 'Total Sales By Region of Top Genre '+name, 'Name Of Genre', 'Global sales in millions'))
 
-    st.header('Top Genres By Total Sales in Region')
-    for region, name in analysis.getRegion():
-        st.plotly_chart(plotBar(analysis.getTopGenresByCountInRegion(
-            region), 'Total Release Count in '+name, 'Name Of Genre', 'Global sales in millions'))
 
 
 def analyseGameRelease():
