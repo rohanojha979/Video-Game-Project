@@ -82,15 +82,37 @@ def analyse():
 def analysePlatform():
     data = analysis.getPlatform()
     st.plotly_chart(plotBar(analysis.getPlatform(), 'VG Sales Platform Data', 'Name of Platform', 'Global sales in millions'))
+    st.markdown("""
+    ### In this graph, it shows that the global sales in million dollars platform wise which the top platform is PS2 and revenue is about 1200 millions dollars and after that X360 and this platform revenue is about 980 million dollars , the PS2 platform is highly demanded which gamers like to play most game and this platform PCFX is not popular and revenue is about 0.03 million dollars """)
 
 def analysePublisher():
 
     num = st.select_slider(options=[5, 10, 15, 20, 25, 30], label="Select the number of Publishers to show")
     st.header('Top Publishers By Release Count')
     st.plotly_chart(plotBar(analysis.getTopPublishersByCount(num), 'VG Sales Publisher Data', 'Name Of Publisher', 'Global sales in millions'))
+    st.markdown("""
+    ### In this graph, it shows the top publishers which are the highest in global sales and the top publisher is electronics arts which total sales is about 1350 million dollars and Electronic Arts is a leading publisher of games on Console, PC and Mobile. We exist to inspire the world through Play. Electronic Arts is a leading publisher of games on Console, PC and Mobile. EA Play FIFA 21 Madden NFL 21 Apex Legends Star Wars.
+    # """) 
 
+    st.markdown("""
+    ### The second top publishers is activision which global sales is about 950 million dollars and Activision Publishing, Inc. is an American video game publisher based in Santa Monica, California. It currently serves as the publishing business for its parent company, Activision Blizzard, and consists of several subsidiary studios. Activision is one of the largest third-party video game publishers in the world and was the top United States publisher in 2016.
+     """)
+    
+    st.markdown("""
+    """)
+    st.markdown("""
+    """)
+    st.markdown("""
+    """)
+    st.markdown("""
+    """)
+    st.markdown("""
+    """)
+    st.markdown("""
+    ---------
+    """)
     st.header('Top Publishers By Total Sales')
-    st.plotly_chart(plotBar(analysis.getTopPublishersBySum(num), 'Total Sales of Pubisher Data', 'Name Of Publisher', 'Global sales in millions'))
+    st.plotly_chart(plotBar(analysis.getTopPublishersBySum(num), 'Total Sales of Publisher Data', 'Name Of Publisher', 'Global sales in millions'))
 
     st.header('Top Publishers By Total Sales in Region')
     for region, name in analysis.getRegion():
@@ -118,7 +140,7 @@ def analyseGameRelease():
     st.dataframe(analysis.getYearWiseRelease())
     st.plotly_chart(plotLine(analysis.getYearWiseRelease(), 'Game Growth By Year', 'Year', 'Global releases'))
     st.markdown("""
-    ### 
+    ### In this graph , here the growth of video game year wise from 1980 up to 2020 and we see that in 2008 - 2009 the highest growth of game during this year because PC games are highly demanded after 2001and also gamers like to play but after 2009 we also see that, the graph goes deep because of the publisher not releases that type of game which gamers like it and also in 2015, the publisher releases good game and also by time gamers switches from PC to mobile.
     # """)
     
 # def 
