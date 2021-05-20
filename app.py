@@ -71,6 +71,8 @@ def analysePlatform():
 
 def analysePublisher():
 
+    
+
     num = st.select_slider(
         options=[5, 10, 15, 20, 25, 30], label="Select the number of Publishers to show")
     st.header('Top Publishers By Release Count')
@@ -133,15 +135,16 @@ def analyseGenre():
     for region, name in analysis.getRegion():
         st.plotly_chart(plotBar(analysis.getTopGenresBySumInRegion(
             region), 'Total Sales By Region of Top Genre '+name, 'Name Of Genre', 'Global sales in millions'))
-
-
+       
+      
+        
 
 def analyseGameRelease():
     st.header("Year wise release")
     st.plotly_chart(plotLine(analysis.getYearWiseRelease(),
                              'Exponential Growth in Video Games sales can be seen after 2000 as many new Gaming Plaforms such as Playstation, Xbox etc. were released', 'Year', 'Global releases'))
     st.markdown("""
-    ### In this graph , here the growth of video game year wise from 1980 up to 2020 and we see that in 2008 - 2009 the highest growth of game during this year because PC games are highly demanded after 2001and also gamers like to play but after 2009 we also see that, the graph goes deep because of the publisher not releases that type of game which gamers like it and also in 2015, the publisher releases good game and also by time gamers switches from PC to mobile.
+    ### In this graph , here the growth of video game year wise from 1980 up to 2016 and we see that in 2008 - 2009 the highest growth of game during this year because PC games are highly demanded after 2001and also gamers like to play but after 2009 we also see that, the graph goes deep because of the publisher not releases that type of game which gamers like it and also in 2015, the publisher releases good game and also by time gamers switches from PC to mobile.
     # """)
 
 
