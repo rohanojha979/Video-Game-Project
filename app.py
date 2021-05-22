@@ -17,6 +17,10 @@ analysis = Analyse("datasets/vgsales.csv")
 st.title('Video Games Sales Analysis')
 st.image("https://blog.vinfotech.com/sites/default/files/styles/blog-list-img-new/public/how-to-build-a-successful-real-money-gaming-website-banner.png?itok=MJI4LKyG")
 
+st.markdown("""
+##### Made By - Rohan Kr Ojha
+""")
+
 st.markdown("----")
 
 sidebar = st.sidebar
@@ -144,7 +148,7 @@ def analyseGameRelease():
     st.plotly_chart(plotLine(analysis.getYearWiseRelease(),
                              'Exponential Growth in Video Games sales can be seen after 2000 as many new Gaming Plaforms such as Playstation, Xbox etc. were released', 'Year', 'Global releases'))
     st.markdown("""
-    ### In this graph , here the growth of video game year wise from 1980 up to 2016 and we see that in 2008 - 2009 the highest growth of game during this year because PC games are highly demanded after 2001and also gamers like to play but after 2009 we also see that, the graph goes deep because of the publisher not releases that type of game which gamers like it and also in 2015, the publisher releases good game and also by time gamers switches from PC to mobile.
+    ###streamlit  In this graph , here the growth of video game year wise from 1980 up to 2016 and we see that in 2008 - 2009 the highest growth of game during this year because PC games are highly demanded after 2001and also gamers like to play but after 2009 we also see that, the graph goes deep because of the publisher not releases that type of game which gamers like it and also in 2015, the publisher releases good game and also by time gamers switches from PC to mobile.
     # """)
 
 
